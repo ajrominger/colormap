@@ -44,7 +44,11 @@ colors3d <- function(data, trans="fit", order=1, inversion=1, opacity=NULL){
 
 colors2d <- function(data, colors=c("yellow", "green", "blue", "magenta"),
                      xtrans=c("none", "log", "rank"), ytrans=c("none", "log", "rank")){
-      colors <- col2rgb(colors)/255
+
+   xtrans <- match.arg(xtrans, c("none", "log", "rank"))
+   ytrans <- match.arg(xtrans, c("none", "log", "rank"))
+
+   colors <- col2rgb(colors)/255
 
       if(xtrans=="rank") data[,1] <- ecdf(data[,1])(data[,1])
       if(ytrans=="rank") data[,2] <- ecdf(data[,2])(data[,2])
