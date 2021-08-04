@@ -50,10 +50,10 @@ colors2d <- function(data, colors=c("yellow", "green", "blue", "magenta"),
 
    colors <- col2rgb(colors)/255
 
-      if(xtrans=="rank") data[,1] <- ecdf(data[,1])(data[,1])
-      if(ytrans=="rank") data[,2] <- ecdf(data[,2])(data[,2])
-      if(xtrans=="log") data[,1] <- log(data[,1])
-      if(ytrans=="log") data[,2] <- log(data[,2])
+      if(xtrans=="rank") data[,1] <- rank(data[, 1]) / nrow(data)
+      if(ytrans=="rank") data[,2] <- rank(data[, 2]) / nrow(data)
+      if(xtrans=="log") data[,1] <- log(data[, 1])
+      if(ytrans=="log") data[,2] <- log(data[, 2])
 
       data <- apply(data, 2, scales::rescale)
       interpolate <- function(i){
